@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\ThuVien_API.props" />
+</Project>
