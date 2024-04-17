@@ -45,12 +45,12 @@ namespace ThuVien_API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsRead = table.Column<bool>(type: "bit", nullable: true),
+                    IsRead = table.Column<bool>(type: "bit", nullable: false),
                     DateRead = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Rate = table.Column<int>(type: "int", nullable: false),
+                    Rate = table.Column<int>(type: "int", nullable: true),
                     Genre = table.Column<int>(type: "int", nullable: false),
                     CoverUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateAdded = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateAdded = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PublisherID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

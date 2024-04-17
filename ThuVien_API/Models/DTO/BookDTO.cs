@@ -1,11 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ThuVien_API.Models
+﻿namespace ThuVien_API.Models.DTO
 {
-	public class Books
+	public class BookDTO
 	{
-		[Key]
-		public int BookID { get; set; }
+		public int Id { get; set; }
 		public string? Title { get; set; }
 		public string? Description { get; set; }
 		public bool IsRead { get; set; }
@@ -14,12 +11,7 @@ namespace ThuVien_API.Models
 		public int Genre { get; set; }
 		public string? CoverUrl { get; set; }
 		public DateTime DateAdded { get; set; }
-		//-----
-		public int PublisherID { get; set; }
-		public Publishers Publisher { get; set; }
-		//
-		public List<Book_Author> Book_Authors { get; set; }
-
-
+		public string PublisherName { get; set; }
+		public List<string> AuthorName { get; set; }
 	}
 }

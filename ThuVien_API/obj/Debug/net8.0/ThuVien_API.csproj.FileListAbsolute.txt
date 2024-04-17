@@ -134,3 +134,4 @@ D:\WEB_API\ThuVien_API\ThuVien_API\obj\Debug\net8.0\refint\ThuVien_API.dll
 D:\WEB_API\ThuVien_API\ThuVien_API\obj\Debug\net8.0\ThuVien_API.pdb
 D:\WEB_API\ThuVien_API\ThuVien_API\obj\Debug\net8.0\ThuVien_API.genruntimeconfig.cache
 D:\WEB_API\ThuVien_API\ThuVien_API\obj\Debug\net8.0\ref\ThuVien_API.dll
+D:\WEB_API\ThuVien_API\ThuVien_API\obj\Debug\net8.0\ThuVien_API.sourcelink.json

@@ -12,7 +12,7 @@ using ThuVien_API.Data;
 namespace ThuVien_API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240415025814_CodeFirst")]
+    [Migration("20240417022333_CodeFirst")]
     partial class CodeFirst
     {
         /// <inheritdoc />
@@ -75,8 +75,8 @@ namespace ThuVien_API.Migrations
                     b.Property<string>("CoverUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DateAdded")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DateRead")
                         .HasColumnType("datetime2");
@@ -87,13 +87,13 @@ namespace ThuVien_API.Migrations
                     b.Property<int>("Genre")
                         .HasColumnType("int");
 
-                    b.Property<bool?>("IsRead")
+                    b.Property<bool>("IsRead")
                         .HasColumnType("bit");
 
                     b.Property<int>("PublisherID")
                         .HasColumnType("int");
 
-                    b.Property<int>("Rate")
+                    b.Property<int?>("Rate")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
