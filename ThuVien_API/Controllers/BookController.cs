@@ -3,6 +3,7 @@ using ThuVien_API.Data;
 using ThuVien_API.Models.DTO;
 using ThuVien_API.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.Json;
 
 namespace ThuVien_API.Controllers
 {
@@ -46,81 +47,109 @@ namespace ThuVien_API.Controllers
 		//}
 
 		// GET: api/Students/5
-		[HttpGet("{id}")]
-		public async Task<ActionResult<Books>> GetBooks(int id)
+		[HttpGet]
+		[Route("get-book-by-id/{id}")]
+		public IActionResult GetBookById([FromRoute] int id)
 		{
-			var Book = await _dbContext.Book.FindAsync(id);
-
-			if (Book == null)
+			//get book domain model from db
+			var bookWithDomain = _dbContext.Book.Where(n => n.BookID == id);
+			if (bookWithDomain == null)
 			{
 				return NotFound();
 			}
-
-			return Book;
+			//map domain model to DTO
+			var bookWithIdDTO = bookWithDomain.Select(Books => new BookDTO()
+			{
+				Id = Books.BookID,
+				Title = Books.Title,
+				Description = Books.Description,
+				IsRead = Books.IsRead,
+				DateRead = Books.IsRead ? Books.DateRead.Value : null,
+				Rate = Books.IsRead ? Books.Rate.Value : null,
+				Genre = Books.Genre,
+				CoverUrl = Books.CoverUrl,
+				PublisherName = Books.Publisher.Name,
+				AuthorName = Books.Book_Authors.Select(n => n.Author.FullName).ToList()
+			});
+			return Ok(bookWithIdDTO);
 		}
-		// POST: api/Students
-		[HttpPost]
-		public async Task<ActionResult<Books>> PostStudent(Books books)
+		[HttpPost("add-book")]
+		public IActionResult AddBook([FromBody] AddBookRequestDTO addBookRequestDTO)
 		{
-			_dbContext.Book.Add(books);
-			await _dbContext.SaveChangesAsync();
-
-			return CreatedAtAction("GetBooks", new { id = books.BookID }, books);
-		}
-		// PUT: api/Students/5
-		[HttpPut("{id}")]
-		public async Task<IActionResult> PutStudent(int id, Books book)
-		{
-			if (id != book.BookID)
+			//   DTO to Domain Model 
+			var bookDomainModel = new Books
 			{
-				return BadRequest();
-			}
-
-			_dbContext.Entry(book).State = EntityState.Modified;
-
-			try
+				Title = addBookRequestDTO.Title,
+				Description = addBookRequestDTO.Description,
+				IsRead = addBookRequestDTO.IsRead,
+				Rate = addBookRequestDTO.Rate,
+				Genre =addBookRequestDTO.Genre,
+				CoverUrl = addBookRequestDTO.CoverUrl,
+				DateAdded = addBookRequestDTO.DateAdded,
+				PublisherID = addBookRequestDTO.PublisherID,
+			};
+			//Use Domain Model to create book
+			_dbContext.Book.Add(bookDomainModel);
+			_dbContext.SaveChanges();
+			foreach (var id in addBookRequestDTO.AuthorIds)
 			{
-				await _dbContext.SaveChangesAsync();
-			}
-			catch (DbUpdateConcurrencyException)
-			{
-				if (!BookExists(id))
+				var _book_author = new Book_Author()
 				{
-					return NotFound();
-				}
-				else
-				{
-					throw;
-				}
+					BookID = bookDomainModel.BookID,
+					AuthorID = id
+				};
+				_dbContext.Book_Author.Add(_book_author);
+				_dbContext.SaveChanges();
 			}
-
-			return NoContent();
+			return Ok();
 		}
-		// DELETE: api/Students/5
-		[HttpDelete("{id}")]
-		public async Task<IActionResult> DeleteBook(int id)
+		//update book in db
+		[HttpPut]
+		[Route("update-book/{id}")]
+		public IActionResult UpdateBook([FromBody] BookDTO bookDTO, [FromRoute] int id)
 		{
-			var book = await _dbContext.Book.FindAsync(id);
-			if (book == null)
+			//get book from db
+			var bookFromDb = _dbContext.Book.Include(n => n.Book_Authors).FirstOrDefault(n => n.BookID == id);
+			if (bookFromDb == null)
 			{
 				return NotFound();
 			}
-
-			_dbContext.Book.Remove(book);
-			await _dbContext.SaveChangesAsync();
-
-			return NoContent();
+			//map DTO to domain model
+			bookFromDb.Title = bookDTO.Title;
+			bookFromDb.Description = bookDTO.Description;
+			bookFromDb.IsRead = bookDTO.IsRead;
+			bookFromDb.DateRead = bookDTO.DateRead;
+			bookFromDb.Rate = bookDTO.Rate;
+			bookFromDb.Genre = bookDTO.Genre;
+			bookFromDb.CoverUrl = bookDTO.CoverUrl;
+			bookFromDb.Publisher.Name = bookDTO.PublisherName;
+			bookFromDb.Book_Authors = bookDTO.AuthorName.Select(n => new Book_Author()
+			{
+				Author = new Authors()
+				{
+					FullName = n
+				}
+			}).ToList();
+			_dbContext.SaveChanges();
+			return Ok();
 		}
-
-		private bool BookExists(int id)
+		//delete book from db
+		[HttpDelete]
+		[Route("delete-book/{id}")]
+		public IActionResult DeleteBook([FromRoute] int id)
 		{
-			return _dbContext.Book.Any(e => e.BookID == id);
+			//get book from db
+			var bookFromDb = _dbContext.Book.FirstOrDefault(n => n.BookID == id);
+			if (bookFromDb == null)
+			{
+				return NotFound();
+			}
+			_dbContext.Book.Remove(bookFromDb);
+			_dbContext.SaveChanges();
+			return Ok();
 		}
 
-		//public async Task<IActionResult> GetBooks (int id)
-		//{
-
-		//	return;
-		//}
-	}
+	}	
+	
 }
+
