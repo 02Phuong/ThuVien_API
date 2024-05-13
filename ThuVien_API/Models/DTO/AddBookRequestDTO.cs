@@ -1,7 +1,11 @@
-﻿namespace ThuVien_API.Models.DTO
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ThuVien_API.Models.DTO
 {
 	public class AddBookRequestDTO
 	{
+		[Required]
+		[MinLength(10)]
 		public string? Title { get; set; }
 		public string? Description { get; set; }
 		public bool IsRead { get; set; }
