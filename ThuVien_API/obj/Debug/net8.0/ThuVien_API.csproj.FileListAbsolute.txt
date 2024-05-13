@@ -135,3 +135,10 @@ D:\WEB_API\ThuVien_API\ThuVien_API\obj\Debug\net8.0\ThuVien_API.pdb
 D:\WEB_API\ThuVien_API\ThuVien_API\obj\Debug\net8.0\ThuVien_API.genruntimeconfig.cache
 D:\WEB_API\ThuVien_API\ThuVien_API\obj\Debug\net8.0\ref\ThuVien_API.dll
 D:\WEB_API\ThuVien_API\ThuVien_API\obj\Debug\net8.0\ThuVien_API.sourcelink.json
+D:\WEB_API\ThuVien_API\ThuVien_API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\WEB_API\ThuVien_API\ThuVien_API\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\WEB_API\ThuVien_API\ThuVien_API\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\WEB_API\ThuVien_API\ThuVien_API\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\WEB_API\ThuVien_API\ThuVien_API\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+D:\WEB_API\ThuVien_API\ThuVien_API\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+D:\WEB_API\ThuVien_API\ThuVien_API\bin\Debug\net8.0\Microsoft.Extensions.Options.dll

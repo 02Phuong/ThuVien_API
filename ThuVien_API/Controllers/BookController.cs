@@ -5,26 +5,28 @@ using ThuVien_API.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.Json;
 using ThuVien_API.Repositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ThuVien_API.Controllers
 {
 	[ApiController]
 	[Route("api/[controller]")]
-	public class BookController : Controller
+	[Authorize]
+	public class BookController : ControllerBase
 	{
-		private readonly AppDbContext _dbContext;
 		private readonly IBookRepository _bookRepository;
-		public BookController(AppDbContext dbContext, IBookRepository bookRepository)
+		public BookController(IBookRepository bookRepository)
 		{
-			_dbContext = dbContext;
 			_bookRepository = bookRepository;
 		}
 		//GET http://localhost:port/api/get-all-books
 		[HttpGet("get-all-books")]
-		public IActionResult GetAll()
+		public IActionResult GetAll([FromQuery] string? filterOn, [FromQuery] string? filterQuery,
+			[FromQuery] string? sortBy, [FromQuery] bool isAscending,
+			[FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 100)
 		{
-			// su dung reposity pattern 
-			var allBooks = _bookRepository.GetAllBooks();
+			// su dung reposity pattern  
+			var allBooks = _bookRepository.GetAllBooks(filterOn, filterQuery, sortBy, isAscending, pageNumber, pageSize);
 			return Ok(allBooks);
 		}
 

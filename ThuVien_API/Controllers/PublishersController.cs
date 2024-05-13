@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ThuVien_API.Data;
 using ThuVien_API.Models.DTO;
 using ThuVien_API.Repositories;
@@ -7,6 +8,7 @@ namespace ThuVien_API.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
+	[Authorize]
 	public class PublishersController : Controller
 	{
 			private readonly AppDbContext _dbContext;
