@@ -21,6 +21,7 @@ namespace ThuVien_API.Controllers
 		}
 		//GET http://localhost:port/api/get-all-books
 		[HttpGet("get-all-books")]
+		[Authorize(Roles = "Read")]
 		public IActionResult GetAll([FromQuery] string? filterOn, [FromQuery] string? filterQuery,
 			[FromQuery] string? sortBy, [FromQuery] bool isAscending,
 			[FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 100)
@@ -56,6 +57,7 @@ namespace ThuVien_API.Controllers
 			return Ok(updateBook);
 		}
 		[HttpDelete("delete-book-by-id/{id}")]
+		[Authorize(Roles ="Write")]
 		public IActionResult DeleteBookById(int id)
 		{
 			var deleteBook = _bookRepository.DeleteBookById(id);
