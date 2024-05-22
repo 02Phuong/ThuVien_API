@@ -1,0 +1,12 @@
+2024-05-15 22:55:43.391 +07:00 [INF] User profile is available. Using 'C:\Users\ASUS\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-15 22:55:43.582 +07:00 [INF] Now listening on: https://localhost:7200
+2024-05-15 22:55:43.583 +07:00 [INF] Now listening on: http://localhost:5169
+2024-05-15 22:55:43.587 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-15 22:55:43.589 +07:00 [INF] Hosting environment: Development
+2024-05-15 22:55:43.590 +07:00 [INF] Content root path: D:\WEB_API\ThuVien_API\ThuVien_API
+2024-05-15 22:55:45.341 +07:00 [INF] User profile is available. Using 'C:\Users\ASUS\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-15 22:55:45.523 +07:00 [INF] Now listening on: https://localhost:7200
+2024-05-15 22:55:45.525 +07:00 [INF] Now listening on: http://localhost:5169
+2024-05-15 22:55:45.529 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-15 22:55:45.531 +07:00 [INF] Hosting environment: Development
+2024-05-15 22:55:45.531 +07:00 [INF] Content root path: D:\WEB_API\ThuVien_API\ThuVien_API

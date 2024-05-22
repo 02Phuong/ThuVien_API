@@ -12,6 +12,7 @@ namespace ThuVien_API.Data
 		public DbSet<Authors> Author { get; set; }
 		public DbSet<Publishers> Publisher { get; set; }
 		public DbSet<Book_Author> Book_Author { get; set; }
+		public DbSet<Image> Images { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{

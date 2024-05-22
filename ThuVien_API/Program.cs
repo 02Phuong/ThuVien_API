@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using System.Text;
 using ThuVien_API.Data;
 using ThuVien_API.Repositories;
@@ -14,6 +15,17 @@ builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 builder.Services.AddScoped<IPublisherRepository,PublisherRepository>();
 builder.Services.AddScoped<ITokenRepository, TokenRepository>();
+builder.Services.AddScoped<IImageRepository, LocalImageRepository>();
+
+// Add services to the container. 
+var _logger = new LoggerConfiguration()
+.WriteTo.Console()// ghi ra console 
+.WriteTo.File("Logs/Book_log.txt", rollingInterval: RollingInterval.Minute) //ghi ra file lưu trong thư mục Logs 
+.MinimumLevel.Information() 
+.CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(_logger);
+///
 builder.Services.AddControllers();
 // config identity user 
 builder.Services.AddIdentityCore<IdentityUser>()
@@ -41,8 +53,7 @@ builder.Services.AddSwaggerGen(options =>
 		Title = "Book API",
 		Version = "v1"
 	});
-	options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new
-OpenApiSecurityScheme
+	options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
 	{
 		Name = "Authorization",
 		In = ParameterLocation.Header,
@@ -89,7 +100,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddDbContext<BookAuthDbContext>(options =>
 
 options.UseSqlServer(builder.Configuration.GetConnectionString("BookAuthConnection")));
-
 
 
 var app = builder.Build();

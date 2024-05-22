@@ -142,3 +142,12 @@ D:\WEB_API\ThuVien_API\ThuVien_API\bin\Debug\net8.0\Microsoft.AspNetCore.Identit
 D:\WEB_API\ThuVien_API\ThuVien_API\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 D:\WEB_API\ThuVien_API\ThuVien_API\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
 D:\WEB_API\ThuVien_API\ThuVien_API\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\WEB_API\ThuVien_API\ThuVien_API\bin\Debug\net8.0\Serilog.dll
+D:\WEB_API\ThuVien_API\ThuVien_API\bin\Debug\net8.0\Serilog.AspNetCore.dll
+D:\WEB_API\ThuVien_API\ThuVien_API\bin\Debug\net8.0\Serilog.Extensions.Hosting.dll
+D:\WEB_API\ThuVien_API\ThuVien_API\bin\Debug\net8.0\Serilog.Extensions.Logging.dll
+D:\WEB_API\ThuVien_API\ThuVien_API\bin\Debug\net8.0\Serilog.Formatting.Compact.dll
+D:\WEB_API\ThuVien_API\ThuVien_API\bin\Debug\net8.0\Serilog.Settings.Configuration.dll
+D:\WEB_API\ThuVien_API\ThuVien_API\bin\Debug\net8.0\Serilog.Sinks.Console.dll
+D:\WEB_API\ThuVien_API\ThuVien_API\bin\Debug\net8.0\Serilog.Sinks.Debug.dll
+D:\WEB_API\ThuVien_API\ThuVien_API\bin\Debug\net8.0\Serilog.Sinks.File.dll
